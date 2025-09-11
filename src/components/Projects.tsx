@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Code, TestTube, Database, TrendingUp } from "lucide-react";
+import { ProjectDetail } from "./ProjectDetail";
 
 const projects = [
   {
@@ -16,7 +18,20 @@ const projects = [
       "Improved testing efficiency by 60%"
     ],
     role: "QA Engineer",
-    category: "Automation"
+    category: "Automation",
+    duration: "4 months",
+    team: "6 members",
+    impact: "60% testing efficiency improvement",
+    challenges: [
+      "Complex API response validation requirements",
+      "Integration with existing CI/CD pipeline", 
+      "Maintaining test suite across multiple environments"
+    ],
+    solutions: [
+      "Developed robust test framework with Python/Pytest",
+      "Created seamless Jenkins integration workflow",
+      "Implemented environment-specific configuration management"
+    ]
   },
   {
     title: "Load Testing Using Locust Framework",
@@ -30,7 +45,20 @@ const projects = [
       "System performance insights"
     ],
     role: "QA Engineer", 
-    category: "Performance Testing"
+    category: "Performance Testing",
+    duration: "3 months",
+    team: "4 members", 
+    impact: "45% performance insight improvement",
+    challenges: [
+      "Simulating realistic user load patterns",
+      "Analyzing complex performance bottlenecks",
+      "Providing actionable performance recommendations"
+    ],
+    solutions: [
+      "Implemented comprehensive load testing with Locust",
+      "Created detailed performance analysis dashboards", 
+      "Developed performance optimization guidelines"
+    ]
   },
   {
     title: "Data Verification Framework",
@@ -44,11 +72,46 @@ const projects = [
       "Process efficiency improvement"
     ],
     role: "QA Engineer",
-    category: "Data Testing"
+    category: "Data Testing",
+    duration: "5 months",
+    team: "5 members",
+    impact: "80% manual error reduction", 
+    challenges: [
+      "Complex data validation across multiple sources",
+      "Handling large datasets efficiently",
+      "Ensuring data integrity across web and database"
+    ],
+    solutions: [
+      "Built automated data verification framework",
+      "Implemented efficient data comparison algorithms",
+      "Created comprehensive validation reporting system"
+    ]
   }
 ];
 
 export const Projects = () => {
+  const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  const [showAllProjects, setShowAllProjects] = useState(false);
+
+  const handleViewDetails = (projectIndex: number) => {
+    setSelectedProject(projectIndex);
+  };
+
+  const handleBackToProjects = () => {
+    setSelectedProject(null);
+  };
+
+  const displayProjects = showAllProjects ? projects : projects.slice(0, 3);
+
+  if (selectedProject !== null) {
+    return (
+      <ProjectDetail 
+        project={projects[selectedProject]} 
+        onBack={handleBackToProjects}
+      />
+    );
+  }
+
   return (
     <section id="projects" className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
@@ -62,7 +125,7 @@ export const Projects = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
-          {projects.map((project, index) => {
+          {displayProjects.map((project, index) => {
             const IconComponent = project.icon;
             return (
               <Card key={index} className="card-gradient border-border/50 hover:glow-accent transition-smooth group animate-fade-in flex flex-col h-full" style={{ animationDelay: `${index * 0.2}s` }}>
@@ -119,11 +182,21 @@ export const Projects = () => {
 
                   {/* Action Buttons */}
                   <div className="flex gap-3 pt-4">
-                    <Button size="sm" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white transition-smooth flex-1">
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="border-primary text-primary hover:bg-primary hover:text-white transition-smooth flex-1"
+                      onClick={() => handleViewDetails(index)}
+                    >
                       <ExternalLink size={14} className="mr-2" />
                       View Details
                     </Button>
-                    <Button size="sm" variant="ghost" className="text-muted-foreground hover:text-accent transition-smooth">
+                    <Button 
+                      size="sm" 
+                      variant="ghost" 
+                      className="text-muted-foreground hover:text-accent transition-smooth"
+                      onClick={() => window.open('https://github.com/gagan-gangadhar', '_blank')}
+                    >
                       <Github size={14} />
                     </Button>
                   </div>
@@ -135,10 +208,27 @@ export const Projects = () => {
 
         {/* Call to Action */}
         <div className="text-center mt-16">
-          <Button size="lg" variant="outline" className="border-accent text-accent hover:bg-accent hover:text-white transition-smooth">
-            View All Projects
-            <ExternalLink size={18} className="ml-2" />
-          </Button>
+          {!showAllProjects && projects.length > 3 && (
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-accent text-accent hover:bg-accent hover:text-white transition-smooth"
+              onClick={() => setShowAllProjects(true)}
+            >
+              View All Projects
+              <ExternalLink size={18} className="ml-2" />
+            </Button>
+          )}
+          {showAllProjects && (
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-muted-foreground text-muted-foreground hover:bg-muted hover:text-foreground transition-smooth"
+              onClick={() => setShowAllProjects(false)}
+            >
+              Show Less Projects
+            </Button>
+          )}
         </div>
       </div>
     </section>

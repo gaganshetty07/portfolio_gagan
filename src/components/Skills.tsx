@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
@@ -88,6 +89,39 @@ const skillCategories = [
 ];
 
 export const Skills = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [animatedSkills, setAnimatedSkills] = useState<{[key: string]: number}>({});
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          
+          // Animate skill bars with staggered timing
+          skillCategories.forEach((category, categoryIndex) => {
+            category.skills.forEach((skill, skillIndex) => {
+              setTimeout(() => {
+                setAnimatedSkills(prev => ({
+                  ...prev,
+                  [`${categoryIndex}-${skillIndex}`]: skill.level
+                }));
+              }, (categoryIndex * 200) + (skillIndex * 100));
+            });
+          });
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const skillSection = document.getElementById('skills');
+    if (skillSection) {
+      observer.observe(skillSection);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="skills" className="py-20 px-4 bg-muted/20">
       <div className="max-w-6xl mx-auto">
@@ -131,8 +165,8 @@ export const Skills = () => {
                           <span className="text-muted-foreground">{skill.level}%</span>
                         </div>
                         <Progress 
-                          value={skill.level} 
-                          className="h-2 bg-secondary"
+                          value={animatedSkills[`${index}-${skillIndex}`] || 0} 
+                          className="h-2 bg-secondary transition-all duration-1000 ease-out"
                         />
                       </div>
                     ))}

@@ -1,19 +1,70 @@
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { 
   Mail, 
   Phone, 
   MapPin, 
   Download, 
-  LinkedinIcon, 
+  Linkedin, 
   Github,
   Send,
   Calendar,
   Briefcase
 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 export const Contact = () => {
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Create mailto link with form data
+    const mailtoLink = `mailto:gagan.gangadhar07@gmail.com?subject=${encodeURIComponent(formData.subject || 'Contact from Portfolio')}&body=${encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    )}`;
+    
+    window.open(mailtoLink, '_blank');
+    
+    toast({
+      title: "Email client opened",
+      description: "Your default email client should open with the message pre-filled.",
+    });
+    
+    // Reset form
+    setFormData({ name: '', email: '', subject: '', message: '' });
+  };
+
+  const handleScheduleCall = () => {
+    const calendlyLink = "https://calendly.com/gagan-gangadhar07"; // Replace with actual Calendly link
+    const subject = "Schedule a call with Gagan S";
+    const body = "Hi Gagan,\n\nI would like to schedule a call to discuss potential opportunities.\n\nBest regards";
+    
+    // For now, open email with scheduling request
+    const mailtoLink = `mailto:gagan.gangadhar07@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(mailtoLink, '_blank');
+    
+    toast({
+      title: "Schedule Request Sent",
+      description: "Email opened to schedule a call. I'll get back to you with available times.",
+    });
+  };
+
   return (
     <section id="contact" className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
@@ -82,11 +133,45 @@ export const Contact = () => {
                 </div>
 
                 <div className="flex flex-wrap gap-4 pt-4">
-                  <Button className="hero-gradient text-white hover:glow-primary transition-smooth">
+                  <Button 
+                    className="hero-gradient text-white hover:glow-primary transition-smooth"
+                    onClick={() => {
+                      const resumeContent = `GAGAN S - QUALITY ANALYST
+Email: gagan.gangadhar07@gmail.com | Phone: 8050804661
+Location: Bengaluru, Karnataka, 560079, India
+
+PROFESSIONAL SUMMARY
+A proactive Quality Analyst with 3+ years of experience in software testing, automation, and quality assurance.
+
+WORK EXPERIENCE
+Quality Analyst | AVR Edge Networks Pvt Ltd | July 2021 - Present
+Project Support Coordinator | Schneider Electric | Nov 2019 - Jun 2021
+Data Analyst | Wistron ITS | Mar 2019 - Aug 2019
+
+CORE SKILLS
+• Quality Practices: FMEA/FTA, SQI, Process improvement
+• Testing & Automation: Python, Selenium, API Testing, Performance Testing
+• Tools: JIRA, Pytest, Locust, JMeter, Jenkins`;
+                      
+                      const blob = new Blob([resumeContent], { type: 'text/plain' });
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement('a');
+                      a.href = url;
+                      a.download = 'Gagan_S_Resume.txt';
+                      document.body.appendChild(a);
+                      a.click();
+                      document.body.removeChild(a);
+                      URL.revokeObjectURL(url);
+                    }}
+                  >
                     <Download size={18} className="mr-2" />
                     Download Resume
                   </Button>
-                  <Button variant="outline" className="border-accent text-accent hover:bg-accent hover:text-white transition-smooth">
+                  <Button 
+                    variant="outline" 
+                    className="border-accent text-accent hover:bg-accent hover:text-white transition-smooth"
+                    onClick={handleScheduleCall}
+                  >
                     <Calendar size={18} className="mr-2" />
                     Schedule Meeting
                   </Button>
@@ -157,11 +242,21 @@ export const Contact = () => {
                 <div className="space-y-3">
                   <h4 className="text-sm font-semibold text-muted-foreground">Connect With Me</h4>
                   <div className="flex gap-3">
-                    <Button size="sm" variant="outline" className="border-primary/30 hover:bg-primary hover:text-white transition-smooth flex-1">
-                      <LinkedinIcon size={16} className="mr-2" />
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="border-primary/30 hover:bg-primary hover:text-white transition-smooth flex-1"
+                      onClick={() => window.open('https://www.linkedin.com/in/gagan-gangadhar/', '_blank')}
+                    >
+                      <Linkedin size={16} className="mr-2" />
                       LinkedIn
                     </Button>
-                    <Button size="sm" variant="outline" className="border-secondary/30 hover:bg-secondary hover:text-white transition-smooth flex-1">
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="border-secondary/30 hover:bg-secondary hover:text-white transition-smooth flex-1"
+                      onClick={() => window.open('https://github.com/gagan-gangadhar', '_blank')}
+                    >
                       <Github size={16} className="mr-2" />
                       GitHub
                     </Button>

@@ -66,7 +66,38 @@ const Navigation = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
-            <Button size="sm" className="hero-gradient text-white hover:glow-primary transition-smooth">
+            <Button 
+              size="sm" 
+              className="hero-gradient text-white hover:glow-primary transition-smooth"
+              onClick={() => {
+                const resumeContent = `GAGAN S - QUALITY ANALYST
+Email: gagan.gangadhar07@gmail.com | Phone: 8050804661
+Location: Bengaluru, Karnataka, 560079, India
+
+PROFESSIONAL SUMMARY
+A proactive Quality Analyst with 3+ years of experience in software testing, automation, and quality assurance.
+
+WORK EXPERIENCE  
+Quality Analyst | AVR Edge Networks Pvt Ltd | July 2021 - Present
+Project Support Coordinator | Schneider Electric | Nov 2019 - Jun 2021
+Data Analyst | Wistron ITS | Mar 2019 - Aug 2019
+
+CORE SKILLS
+• Quality Practices: FMEA/FTA, SQI, Process improvement
+• Testing & Automation: Python, Selenium, API Testing, Performance Testing
+• Tools: JIRA, Pytest, Locust, JMeter, Jenkins`;
+                
+                const blob = new Blob([resumeContent], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'Gagan_S_Resume.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+              }}
+            >
               <Download size={16} className="mr-2" />
               Resume
             </Button>
@@ -95,7 +126,38 @@ const Navigation = () => {
                 </button>
               ))}
               <div className="px-3 py-2">
-                <Button size="sm" className="hero-gradient text-white hover:glow-primary transition-smooth w-full">
+                <Button 
+                  size="sm" 
+                  className="hero-gradient text-white hover:glow-primary transition-smooth w-full"
+                  onClick={() => {
+                    const resumeContent = `GAGAN S - QUALITY ANALYST
+Email: gagan.gangadhar07@gmail.com | Phone: 8050804661
+Location: Bengaluru, Karnataka, 560079, India
+
+PROFESSIONAL SUMMARY
+A proactive Quality Analyst with 3+ years of experience in software testing, automation, and quality assurance.
+
+WORK EXPERIENCE
+Quality Analyst | AVR Edge Networks Pvt Ltd | July 2021 - Present
+Project Support Coordinator | Schneider Electric | Nov 2019 - Jun 2021
+Data Analyst | Wistron ITS | Mar 2019 - Aug 2019
+
+CORE SKILLS
+• Quality Practices: FMEA/FTA, SQI, Process improvement
+• Testing & Automation: Python, Selenium, API Testing, Performance Testing  
+• Tools: JIRA, Pytest, Locust, JMeter, Jenkins`;
+                    
+                    const blob = new Blob([resumeContent], { type: 'text/plain' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'Gagan_S_Resume.txt';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                  }}
+                >
                   <Download size={16} className="mr-2" />
                   Download Resume
                 </Button>

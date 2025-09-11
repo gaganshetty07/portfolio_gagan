@@ -44,11 +44,66 @@ export const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-wrap gap-4">
-            <Button size="lg" className="hero-gradient text-white hover:glow-primary transition-smooth">
+            <Button 
+              size="lg" 
+              className="hero-gradient text-white hover:glow-primary transition-smooth"
+              onClick={() => {
+                // Create a downloadable resume
+                const resumeContent = `
+GAGAN S - QUALITY ANALYST
+Email: gagan.gangadhar07@gmail.com
+Phone: 8050804661
+Location: Bengaluru, Karnataka
+
+PROFESSIONAL SUMMARY
+Proactive Quality Analyst with 3+ years of experience ensuring high-quality software delivery.
+Expert in automation, FMEA/FTA, and cross-functional collaboration.
+
+CORE SKILLS
+• Quality Practices: Quality assurance methodologies, FMEA/FTA, SQI implementation
+• Testing & Automation: API Testing, UI Automation, Performance Testing, Manual Testing  
+• Programming: Python, SQL, Selenium WebDriver, Jenkins, Git
+• Agile & Collaboration: Scrum, Cross-functional teams, Customer advocacy
+
+WORK EXPERIENCE
+Quality Analyst - AVR Edge Networks Pvt Ltd (July 2021 - Present)
+• Led FMEA/FTA discussions and implementation
+• Designed optimized test cases for manual and automated testing
+• Collaborated with cross-functional teams for customer success
+• Participated in agile ceremonies and continuous improvement
+
+Project Support Coordinator - Schneider Electric (Nov 2019 - Jun 2021)
+• Managed PAN India projects ensuring quality standards
+• Hardware testing exposure in Smart UPS and Inverters
+• Customer escalation management and deliverable tracking
+
+EDUCATION
+Bachelor of Engineering - Electrical and Electronics Engineering
+Rajarajeswari College of Engineering (Apr 2014 - Apr 2018)
+                `;
+                
+                const blob = new Blob([resumeContent], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'Gagan_S_Resume.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+              }}
+            >
               <Download size={20} className="mr-2" />
               Download Resume
             </Button>
-            <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-white transition-smooth">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="border-primary text-primary hover:bg-primary hover:text-white transition-smooth"
+              onClick={() => {
+                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
               View Projects
             </Button>
           </div>
