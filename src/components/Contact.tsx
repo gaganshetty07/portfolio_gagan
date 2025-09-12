@@ -390,7 +390,7 @@ export const Contact = () => {
                     </div>
                     <div className="flex-1">
                       <div className="font-medium text-foreground">Email Me</div>
-                      <div className="text-sm text-muted-foreground">gaganshetty1996@gmail.com</div>
+                      <div className="text-sm text-muted-foreground">Click to send email</div>
                     </div>
                     <div className="text-primary opacity-0 group-hover:opacity-100 transition-opacity">→</div>
                   </a>
@@ -406,7 +406,7 @@ export const Contact = () => {
                     </div>
                     <div className="flex-1">
                       <div className="font-medium text-foreground">WhatsApp</div>
-                      <div className="text-sm text-muted-foreground">+91 8050804661 • Quick chat</div>
+                      <div className="text-sm text-muted-foreground">Click to chat on WhatsApp</div>
                     </div>
                     <div className="text-green-500 opacity-0 group-hover:opacity-100 transition-opacity">→</div>
                   </a>
@@ -420,7 +420,7 @@ export const Contact = () => {
                     </div>
                     <div className="flex-1">
                       <div className="font-medium text-foreground">Call Me</div>
-                      <div className="text-sm text-muted-foreground">+91 8050804661</div>
+                      <div className="text-sm text-muted-foreground">Click to call directly</div>
                     </div>
                     <div className="text-accent opacity-0 group-hover:opacity-100 transition-opacity">→</div>
                   </a>

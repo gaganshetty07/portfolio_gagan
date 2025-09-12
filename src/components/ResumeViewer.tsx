@@ -117,14 +117,14 @@ export const ResumeViewer = ({ onBack }: ResumeViewerProps) => {
               <p className="text-xl text-accent font-semibold">QUALITY ANALYST</p>
               
               <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-                <div className="flex items-center gap-2">
+                <a href="mailto:gaganshetty1996@gmail.com?subject=Resume Inquiry&body=Hi Gagan, I would like to discuss opportunities with you." className="flex items-center gap-2 hover:text-accent transition-colors">
                   <Mail size={16} className="text-accent" />
-                  <span>gagan.gangadhar07@gmail.com</span>
-                </div>
-                <div className="flex items-center gap-2">
+                  <span>Click to email</span>
+                </a>
+                <a href="https://wa.me/918050804661?text=Hi Gagan, I would like to discuss opportunities with you." target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent transition-colors">
                   <Phone size={16} className="text-accent" />
-                  <span>8050804661</span>
-                </div>
+                  <span>Click to WhatsApp</span>
+                </a>
                 <div className="flex items-center gap-2">
                   <MapPin size={16} className="text-accent" />
                   <span>Bengaluru, Karnataka, 560079</span>
