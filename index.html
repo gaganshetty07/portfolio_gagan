@@ -1,28 +1,252 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gagan S - Quality Analyst | 4+ Years QA Experience | Bengaluru</title>
-    <meta name="description" content="Experienced Quality Analyst in Bengaluru with 4+ years expertise in software testing, automation (Python, Selenium, api), FMEA/FTA, and agile methodologies. Currently at AVR Edge Networks." />
-    <meta name="author" content="Gagan S" />
-    <meta name="keywords" content="Quality Analyst, Software Testing, Automation Testing, Python, Selenium, FMEA, FTA, QA Engineer, Bengaluru, API Testing, Performance Testing" />
-
-    <meta property="og:title" content="Gagan S - Quality Analyst Portfolio" />
-    <meta property="og:description" content="Experienced Quality Analyst with 4+ years in software testing, automation, and quality assurance. Expert in Python, Selenium, and agile methodologies." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:title" content="Gagan S - Quality Analyst Portfolio" />
-    <meta name="twitter:description" content="Quality Analyst with 3+ years experience in testing automation and quality assurance" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-    <script type="module" crossorigin src="/agile-qa-insights/assets/index-CiTrSBtK.js"></script>
-    <link rel="stylesheet" crossorigin href="/agile-qa-insights/assets/index-BhCcmc0N.css">
-  </head>
-
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gagan S - Quality Analyst Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #4ecdc4;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .stat {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat h3 {
+            font-size: 2.5rem;
+            color: #4ecdc4;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat p {
+            opacity: 0.8;
+        }
+        
+        .skills {
+            margin: 4rem 0;
+        }
+        
+        .skills h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+        
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .skill-card h3 {
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact {
+            text-align: center;
+            margin: 4rem 0;
+        }
+        
+        .contact h2 {
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>GAGAN S</h1>
+            <h2>Quality Analyst</h2>
+            <p>4+ Years Experience in Software Testing & Automation</p>
+            <p>Passionate about delivering quality software solutions through innovative testing approaches</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat">
+                <h3>4+</h3>
+                <p>Years Experience</p>
+            </div>
+            <div class="stat">
+                <h3>25+</h3>
+                <p>Projects Delivered</p>
+            </div>
+            <div class="stat">
+                <h3>95%</h3>
+                <p>Test Coverage</p>
+            </div>
+            <div class="stat">
+                <h3>100%</h3>
+                <p>Client Satisfaction</p>
+            </div>
+        </div>
+        
+        <div class="skills">
+            <h2>Core Skills</h2>
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <h3>Testing & Automation</h3>
+                    <ul class="skill-list">
+                        <li>Python & Selenium</li>
+                        <li>API Testing (Postman)</li>
+                        <li>Performance Testing (Locust)</li>
+                        <li>Database Testing (SQL)</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Quality Practices</h3>
+                    <ul class="skill-list">
+                        <li>FMEA/FTA Implementation</li>
+                        <li>Agile Methodologies</li>
+                        <li>Process Improvement</li>
+                        <li>Risk Assessment</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Tools & Technologies</h3>
+                    <ul class="skill-list">
+                        <li>JIRA, Jenkins</li>
+                        <li>MySQL, PostgreSQL</li>
+                        <li>Git, Docker</li>
+                        <li>Prompt Engineering</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact">
+            <h2>Get In Touch</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>📧 Email</h3>
+                    <p>gagan.gangadhar07@gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <h3>📱 Phone</h3>
+                    <p>+91 8050804661</p>
+                </div>
+                <div class="contact-item">
+                    <h3>📍 Location</h3>
+                    <p>Bengaluru, Karnataka</p>
+                </div>
+            </div>
+            <a href="mailto:gagan.gangadhar07@gmail.com" class="btn">Contact Me</a>
+            <a href="https://www.linkedin.com/in/gagan-gangadhar/" class="btn">LinkedIn</a>
+        </div>
+    </div>
+</body>
 </html>
