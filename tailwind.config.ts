@@ -89,6 +89,10 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "spin-slow": "spin-slow 20s linear infinite",
+        "spin-slow-reverse": "spin-slow-reverse 25s linear infinite",
+        "counter-spin": "counter-spin 20s linear infinite",
+        "counter-spin-reverse": "counter-spin-reverse 25s linear infinite",
       },
     },
   },

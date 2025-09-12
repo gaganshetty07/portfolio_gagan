@@ -127,22 +127,18 @@ export const Experience = () => {
                       </div>
                     </CardHeader>
                     
-                    <CardContent className="space-y-6">
-                      <div className="space-y-3">
-                        {exp.highlights.map((highlight, highlightIndex) => (
-                          <div key={highlightIndex} className="flex gap-3">
-                            <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                            <p className="text-card-foreground leading-relaxed">{highlight}</p>
-                          </div>
-                        ))}
-                      </div>
-                      
+                    <CardContent className="space-y-4">
                       <div className="flex flex-wrap gap-2 mb-4">
-                        {exp.skills.map((skill, skillIndex) => (
-                          <Badge key={skillIndex} variant="secondary" className="bg-primary/20 text-primary border-primary/30 hover:bg-primary/30 transition-smooth">
+                        {exp.skills.slice(0, 5).map((skill, skillIndex) => (
+                          <Badge key={skillIndex} variant="secondary" className="bg-primary/20 text-primary border-primary/30 hover:bg-primary/30 transition-smooth text-xs">
                             {skill}
                           </Badge>
                         ))}
+                        {exp.skills.length > 5 && (
+                          <Badge variant="outline" className="text-xs text-muted-foreground">
+                            +{exp.skills.length - 5} more
+                          </Badge>
+                        )}
                       </div>
                       
                       <Button 

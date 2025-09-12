@@ -146,60 +146,41 @@ export const Projects = () => {
                   </CardDescription>
                 </CardHeader>
                 
-                <CardContent className="flex-1 flex flex-col justify-between space-y-6">
-                  <div className="space-y-4">
-                    {/* Role */}
-                    <div className="flex items-center gap-2">
-                      <TestTube size={16} className="text-accent" />
-                      <span className="text-sm font-medium">{project.role}</span>
-                    </div>
-
-                    {/* Key Highlights */}
-                    <div className="space-y-2">
-                      <h4 className="text-sm font-semibold text-muted-foreground">Key Achievements</h4>
-                      <div className="space-y-1">
-                        {project.highlights.map((highlight, highlightIndex) => (
-                          <div key={highlightIndex} className="flex gap-2 items-start">
-                            <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                            <p className="text-sm text-card-foreground leading-relaxed">{highlight}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Technologies */}
-                    <div className="space-y-3">
-                      <h4 className="text-sm font-semibold text-muted-foreground">Technologies Used</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.map((tech, techIndex) => (
-                          <Badge key={techIndex} variant="secondary" className="bg-secondary/50 text-secondary-foreground border-secondary/30 text-xs">
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
+                <CardContent className="space-y-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Badge variant="secondary" className="bg-accent/20 text-accent text-xs">
+                      {project.category}
+                    </Badge>
+                    <Badge variant="outline" className="border-primary/30 text-primary text-xs">
+                      {project.role}
+                    </Badge>
                   </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex gap-3 pt-4">
-                    <Button 
-                      size="sm" 
-                      variant="outline" 
-                      className="border-primary text-primary hover:bg-primary hover:text-white transition-smooth flex-1"
-                      onClick={() => handleViewDetails(index)}
-                    >
-                      <ExternalLink size={14} className="mr-2" />
-                      View Details
-                    </Button>
-                    <Button 
-                      size="sm" 
-                      variant="ghost" 
-                      className="text-muted-foreground hover:text-accent transition-smooth"
-                      onClick={() => window.open('https://github.com/gagan-gangadhar', '_blank')}
-                    >
-                      <Github size={14} />
-                    </Button>
+                  
+                  <p className="text-muted-foreground text-sm line-clamp-2 leading-relaxed">
+                    {project.description}
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.slice(0, 4).map((tech, index) => (
+                      <Badge key={index} variant="outline" className="text-xs border-accent/30 text-accent hover:bg-accent/20 transition-colors">
+                        {tech}
+                      </Badge>
+                    ))}
+                    {project.technologies.length > 4 && (
+                      <Badge variant="outline" className="text-xs text-muted-foreground">
+                        +{project.technologies.length - 4}
+                      </Badge>
+                    )}
                   </div>
+                  
+                  <Button 
+                    onClick={() => handleViewDetails(index)}
+                    variant="outline" 
+                    className="w-full mt-4 group border-primary/30 text-primary hover:bg-primary/20 hover:border-primary/50 transition-all"
+                  >
+                    <ExternalLink size={16} className="mr-2 group-hover:scale-110 transition-transform" />
+                    View Details
+                  </Button>
                 </CardContent>
               </Card>
             );

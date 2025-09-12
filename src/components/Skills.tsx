@@ -134,70 +134,140 @@ export const Skills = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {skillCategories.map((category, index) => {
-            const IconComponent = category.icon;
-            return (
-              <Card key={index} className="creative-card skill-card border-border/50 group animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                <CardHeader>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="p-3 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl group-hover:from-primary/40 group-hover:to-accent/40 transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-3">
-                      <IconComponent size={24} className="text-primary group-hover:text-accent transition-colors duration-300" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-xl group-hover:text-accent transition-all duration-300 group-hover:transform group-hover:translate-x-2">
-                        {category.title}
-                      </CardTitle>
-                    </div>
-                  </div>
-                  <CardDescription className="text-sm leading-relaxed group-hover:text-accent/80 transition-colors duration-300">
-                    {category.description}
-                  </CardDescription>
-                </CardHeader>
-                
-                <CardContent className="space-y-6">
-                  {/* Skill Bars */}
-                  <div className="space-y-4">
-                    {category.skills.map((skill, skillIndex) => (
-                      <div key={skillIndex} className="space-y-2 group/skill">
-                        <div className="flex justify-between text-sm">
-                          <span className="font-medium group-hover/skill:text-primary transition-colors duration-300">{skill.name}</span>
-                          <span className="text-muted-foreground group-hover/skill:text-accent transition-colors duration-300">{skill.level}%</span>
+        <div className="relative">
+          {/* Floating Skills Cloud */}
+          <div className="relative min-h-[600px] flex items-center justify-center">
+            <div className="absolute inset-0 overflow-hidden">
+              {/* Animated Background Elements */}
+              <div className="absolute top-10 left-10 w-20 h-20 bg-primary/10 rounded-full blur-xl animate-pulse"></div>
+              <div className="absolute bottom-20 right-20 w-32 h-32 bg-accent/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-primary/5 rounded-full blur-lg animate-pulse" style={{ animationDelay: '2s' }}></div>
+            </div>
+            
+            {/* Skills Orbits */}
+            <div className="relative w-full max-w-4xl aspect-square">
+              {/* Technical Skills - Inner Circle */}
+              <div className="absolute inset-0 animate-spin-slow">
+                {skillCategories.slice(0, 3).map((category, index) => {
+                  const angle = (index * 360) / 3;
+                  const radius = 150;
+                  const x = Math.cos((angle * Math.PI) / 180) * radius;
+                  const y = Math.sin((angle * Math.PI) / 180) * radius;
+                  const IconComponent = category.icon;
+                  
+                  return (
+                    <div
+                      key={category.title}
+                      className="absolute transform -translate-x-1/2 -translate-y-1/2 animate-counter-spin"
+                      style={{
+                        left: `calc(50% + ${x}px)`,
+                        top: `calc(50% + ${y}px)`,
+                        animationDelay: `${index * 0.1}s`
+                      }}
+                    >
+                      <div className="group relative">
+                        <div className="bg-gradient-to-br from-primary/20 to-primary/5 backdrop-blur-sm border border-primary/30 rounded-xl px-6 py-4 hover:from-primary/30 hover:to-primary/10 hover:border-primary/50 transition-all duration-300 cursor-pointer hover:scale-110 hover:glow-primary">
+                          <div className="flex items-center gap-3">
+                            <IconComponent size={20} className="text-primary" />
+                            <div>
+                              <span className="text-sm font-medium text-foreground whitespace-nowrap">{category.title}</span>
+                              <div className="text-xs text-muted-foreground">{category.skills.length} skills</div>
+                            </div>
+                          </div>
+                          <div className="flex flex-wrap gap-1 mt-2">
+                            {category.skills.slice(0, 2).map((skill) => (
+                              <div key={skill.name} className="w-full bg-primary/20 h-1 rounded-full overflow-hidden">
+                                <div 
+                                  className="h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-1000"
+                                  style={{ width: isVisible ? `${skill.level}%` : '0%' }}
+                                />
+                              </div>
+                            ))}
+                          </div>
                         </div>
-                        <div className="relative">
-                          <Progress 
-                            value={animatedSkills[`${index}-${skillIndex}`] || 0} 
-                            className="h-3 bg-secondary/50 skill-bar transition-all duration-1000 ease-out group-hover/skill:h-4"
-                          />
-                          <div 
-                            className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary via-accent to-primary rounded-full transition-all duration-1000 ease-out opacity-0 group-hover/skill:opacity-30"
-                            style={{ width: `${animatedSkills[`${index}-${skillIndex}`] || 0}%` }}
-                          />
+                        
+                        {/* Tooltip */}
+                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-background border border-primary/30 rounded-md text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+                          <div>{category.description}</div>
+                          <div className="text-muted-foreground mt-1">
+                            {category.skills.map(s => s.name).join(', ')}
+                          </div>
                         </div>
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  );
+                })}
+              </div>
+              
+              {/* Professional Skills - Outer Circle */}
+              <div className="absolute inset-0 animate-spin-slow-reverse">
+                {skillCategories.slice(3).map((category, index) => {
+                  const angle = (index * 360) / 3;
+                  const radius = 240;
+                  const x = Math.cos((angle * Math.PI) / 180) * radius;
+                  const y = Math.sin((angle * Math.PI) / 180) * radius;
+                  const IconComponent = category.icon;
                   
-                  {/* Tools & Technologies */}
-                  <div className="space-y-3">
-                    <h4 className="text-sm font-semibold text-muted-foreground group-hover:text-accent transition-colors duration-300">Tools & Technologies</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {category.tools.map((tool, toolIndex) => (
-                        <Badge 
-                          key={toolIndex} 
-                          variant="outline" 
-                          className="text-xs border-primary/30 text-primary hover:bg-primary/20 floating-badge transition-all duration-300 hover:border-accent/50 hover:text-accent hover:shadow-md"
-                          style={{ animationDelay: `${toolIndex * 0.1}s` }}
-                        >
-                          {tool}
-                        </Badge>
-                      ))}
+                  return (
+                    <div
+                      key={category.title}
+                      className="absolute transform -translate-x-1/2 -translate-y-1/2 animate-counter-spin-reverse"
+                      style={{
+                        left: `calc(50% + ${x}px)`,
+                        top: `calc(50% + ${y}px)`,
+                        animationDelay: `${index * 0.15}s`
+                      }}
+                    >
+                      <div className="group relative">
+                        <div className="bg-gradient-to-br from-accent/20 to-accent/5 backdrop-blur-sm border border-accent/30 rounded-xl px-6 py-4 hover:from-accent/30 hover:to-accent/10 hover:border-accent/50 transition-all duration-300 cursor-pointer hover:scale-110 hover:glow-accent">
+                          <div className="flex items-center gap-3">
+                            <IconComponent size={20} className="text-accent" />
+                            <div>
+                              <span className="text-sm font-medium text-foreground whitespace-nowrap">{category.title}</span>
+                              <div className="text-xs text-muted-foreground">{category.skills.length} skills</div>
+                            </div>
+                          </div>
+                          <div className="flex flex-wrap gap-1 mt-2">
+                            {category.skills.slice(0, 2).map((skill) => (
+                              <div key={skill.name} className="w-full bg-accent/20 h-1 rounded-full overflow-hidden">
+                                <div 
+                                  className="h-full bg-gradient-to-r from-accent to-primary rounded-full transition-all duration-1000"
+                                  style={{ width: isVisible ? `${skill.level}%` : '0%' }}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        
+                        {/* Tooltip */}
+                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-background border border-accent/30 rounded-md text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+                          <div>{category.description}</div>
+                          <div className="text-muted-foreground mt-1">
+                            {category.skills.map(s => s.name).join(', ')}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              
+              {/* Center Hub */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <div className="relative">
+                  <div className="w-32 h-32 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full border border-primary/30 flex items-center justify-center backdrop-blur-sm glow-primary">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                        Skills
+                      </div>
+                      <div className="text-sm text-muted-foreground">Portfolio</div>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            );
-          })}
+                  <div className="absolute inset-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-accent/10 rounded-full animate-ping"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
