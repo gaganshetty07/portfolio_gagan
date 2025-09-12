@@ -13,7 +13,8 @@ import {
   Github,
   Send,
   Calendar,
-  Briefcase
+  Briefcase,
+  MessageCircle
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -77,82 +78,180 @@ export const Contact = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Contact Information */}
-          <div className="lg:col-span-2 space-y-6">
-            <Card className="card-gradient border-border/50 hover:glow-accent transition-smooth group animate-fade-in">
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="p-3 bg-primary/20 rounded-lg group-hover:bg-primary/30 transition-smooth">
-                    <Briefcase size={24} className="text-primary" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-xl group-hover:text-accent transition-smooth">
-                      Professional Summary
-                    </CardTitle>
-                    <CardDescription>Quality Analyst • 3+ Years Experience</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              
-              <CardContent className="space-y-6">
-                <p className="text-card-foreground leading-relaxed">
-                  Experienced Quality Analyst specializing in automation testing, FMEA/FTA implementation, 
-                  and agile methodologies. Proven track record of delivering high-quality software solutions 
-                  through comprehensive testing strategies and cross-functional collaboration.
-                </p>
-                
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <h4 className="text-sm font-semibold text-muted-foreground">Specializations</h4>
-                    <div className="space-y-2">
-                      {[
-                        "Quality Assurance & Testing",
-                        "Test Automation (Python, Selenium)",
-                        "FMEA/FTA Implementation", 
-                        "API & Performance Testing"
-                      ].map((spec, index) => (
-                        <div key={index} className="flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
-                          <span className="text-sm">{spec}</span>
-                        </div>
-                      ))}
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Professional Summary */}
+          <div className="space-y-6">
+            {/* Creative Professional Profile */}
+            <Card className="card-gradient border-border/50 hover:glow-accent transition-smooth group animate-fade-in overflow-hidden">
+              {/* Header with Gradient Background */}
+              <div className="relative bg-gradient-to-br from-primary/10 via-accent/5 to-primary/10 p-6 border-b border-border/50">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="relative">
+                    <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center shadow-lg">
+                      <Briefcase size={28} className="text-white" />
+                    </div>
+                    <div className="absolute -top-1 -right-1 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                      <div className="w-3 h-3 bg-white rounded-full animate-pulse"></div>
                     </div>
                   </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-foreground group-hover:text-accent transition-smooth">
+                      Gagan S
+                    </h3>
+                    <p className="text-accent font-semibold">Project Quality Engineer</p>
+                    <div className="flex items-center gap-2 mt-1">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span className="text-sm text-muted-foreground">4+ Years Experience</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Quick Stats */}
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="text-center p-3 bg-white/10 rounded-lg backdrop-blur-sm">
+                    <div className="text-xl font-bold text-primary">25+</div>
+                    <div className="text-xs text-muted-foreground">Projects</div>
+                  </div>
+                  <div className="text-center p-3 bg-white/10 rounded-lg backdrop-blur-sm">
+                    <div className="text-xl font-bold text-accent">95%</div>
+                    <div className="text-xs text-muted-foreground">Test Coverage</div>
+                  </div>
+                  <div className="text-center p-3 bg-white/10 rounded-lg backdrop-blur-sm">
+                    <div className="text-xl font-bold text-green-400">100%</div>
+                    <div className="text-xs text-muted-foreground">Success Rate</div>
+                  </div>
+                </div>
+              </div>
+
+              <CardContent className="p-6 space-y-6">
+                {/* Professional Summary */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-1 h-6 bg-gradient-to-b from-primary to-accent rounded-full"></div>
+                    <h4 className="text-lg font-semibold">About Me</h4>
+                  </div>
+                  <p className="text-card-foreground leading-relaxed text-sm">
+                    Passionate Project Quality Engineer with 4+ years of hands-on experience in automation testing, 
+                    API testing, and performance optimization. Expert in prompt engineering and AI-assisted development, 
+                    delivering robust testing frameworks and ensuring software quality through innovative approaches.
+                  </p>
+                </div>
+
+                {/* Core Expertise */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-1 h-6 bg-gradient-to-b from-accent to-primary rounded-full"></div>
+                    <h4 className="text-lg font-semibold">Core Expertise</h4>
+                  </div>
                   
-                  <div className="space-y-4">
-                    <h4 className="text-sm font-semibold text-muted-foreground">Tools & Technologies</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {["Python", "Selenium", "JMeter", "JIRA", "Pytest", "Locust"].map((tool, index) => (
-                        <Badge key={index} variant="outline" className="border-primary/30 text-primary text-xs">
-                          {tool}
-                        </Badge>
-                      ))}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-primary rounded-full"></div>
+                        <span className="text-sm font-medium">Test Automation</span>
+                      </div>
+                      <div className="w-full bg-muted/30 rounded-full h-2">
+                        <div className="bg-primary h-2 rounded-full" style={{ width: '90%' }}></div>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-accent rounded-full"></div>
+                        <span className="text-sm font-medium">API Testing</span>
+                      </div>
+                      <div className="w-full bg-muted/30 rounded-full h-2">
+                        <div className="bg-accent h-2 rounded-full" style={{ width: '85%' }}></div>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-primary rounded-full"></div>
+                        <span className="text-sm font-medium">Performance Testing</span>
+                      </div>
+                      <div className="w-full bg-muted/30 rounded-full h-2">
+                        <div className="bg-primary h-2 rounded-full" style={{ width: '88%' }}></div>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-accent rounded-full"></div>
+                        <span className="text-sm font-medium">Prompt Engineering</span>
+                      </div>
+                      <div className="w-full bg-muted/30 rounded-full h-2">
+                        <div className="bg-accent h-2 rounded-full" style={{ width: '92%' }}></div>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-4 pt-4">
-                  <Button 
-                    className="hero-gradient text-white hover:glow-primary transition-smooth"
+                {/* Tech Stack */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-1 h-6 bg-gradient-to-b from-green-500 to-blue-500 rounded-full"></div>
+                    <h4 className="text-lg font-semibold">Tech Stack</h4>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="flex items-center gap-2 p-2 bg-primary/10 rounded-lg">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span className="text-sm">Selenium WebDriver</span>
+                    </div>
+                    <div className="flex items-center gap-2 p-2 bg-accent/10 rounded-lg">
+                      <div className="w-2 h-2 bg-accent rounded-full"></div>
+                      <span className="text-sm">Playwright</span>
+                    </div>
+                    <div className="flex items-center gap-2 p-2 bg-primary/10 rounded-lg">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span className="text-sm">Postman</span>
+                    </div>
+                    <div className="flex items-center gap-2 p-2 bg-accent/10 rounded-lg">
+                      <div className="w-2 h-2 bg-accent rounded-full"></div>
+                      <span className="text-sm">Jenkins CI/CD</span>
+                    </div>
+                    <div className="flex items-center gap-2 p-2 bg-primary/10 rounded-lg">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span className="text-sm">Python & Pytest</span>
+                    </div>
+                    <div className="flex items-center gap-2 p-2 bg-accent/10 rounded-lg">
+                      <div className="w-2 h-2 bg-accent rounded-full"></div>
+                      <span className="text-sm">Locust</span>
+                    </div>
+                    <div className="flex items-center gap-2 p-2 bg-primary/10 rounded-lg">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span className="text-sm">SQL & DB Testing</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-border/50">
+                  <Button
+                    className="flex-1 hero-gradient text-white hover:glow-primary transition-smooth group"
                     onClick={() => {
-                      const resumeContent = `GAGAN S - QUALITY ANALYST
-Email: gagan.gangadhar07@gmail.com | Phone: 8050804661
+                      const resumeContent = `GAGAN S - PROJECT QUALITY ENGINEER
+Email: gagan.gangadhar07@gmail.com | Phone: +91 8050804661
 Location: Bengaluru, Karnataka, 560079, India
 
 PROFESSIONAL SUMMARY
-A proactive Quality Analyst with 3+ years of experience in software testing, automation, and quality assurance.
+A proactive Project Quality Engineer with 4+ years of hands-on experience in software testing, automation, and quality assurance.
+Skilled in prompt engineering and passionate about learning new technologies, delivering high-quality software solutions through comprehensive testing strategies.
 
 WORK EXPERIENCE
-Quality Analyst | AVR Edge Networks Pvt Ltd | July 2021 - Present
+Project Quality Engineer | Phenom | Jan 2025 - Present
+Quality Analyst | AVR Edge Networks Pvt Ltd (Acquired by Phenom) | July 2021 - Dec 2024
 Project Support Coordinator | Schneider Electric | Nov 2019 - Jun 2021
 Data Analyst | Wistron ITS | Mar 2019 - Aug 2019
 
 CORE SKILLS
 • Quality Practices: FMEA/FTA, SQI, Process improvement
-• Testing & Automation: Python, Selenium, API Testing, Performance Testing
-• Tools: JIRA, Pytest, Locust, JMeter, Jenkins`;
-                      
+• Testing & Automation: Python, Selenium, Playwright, API Testing, Performance Testing, Database Testing
+• Prompt Engineering: ChatGPT, Claude, AI-assisted testing
+• Tools: JIRA, Pytest, Locust, Jenkins, Postman
+• Learning: Always exploring new technologies and frameworks`;
+
                       const blob = new Blob([resumeContent], { type: 'text/plain' });
                       const url = URL.createObjectURL(blob);
                       const a = document.createElement('a');
@@ -164,15 +263,15 @@ CORE SKILLS
                       URL.revokeObjectURL(url);
                     }}
                   >
-                    <Download size={18} className="mr-2" />
+                    <Download size={18} className="mr-2 group-hover:animate-bounce" />
                     Download Resume
                   </Button>
-                  <Button 
-                    variant="outline" 
-                    className="border-accent text-accent hover:bg-accent hover:text-white transition-smooth"
+                  <Button
+                    variant="outline"
+                    className="flex-1 border-accent text-accent hover:bg-accent hover:text-white transition-smooth group"
                     onClick={handleScheduleCall}
                   >
-                    <Calendar size={18} className="mr-2" />
+                    <Calendar size={18} className="mr-2 group-hover:animate-pulse" />
                     Schedule Meeting
                   </Button>
                 </div>
@@ -180,72 +279,102 @@ CORE SKILLS
             </Card>
           </div>
 
-          {/* Contact Details & Social */}
+          {/* Creative Contact Hub */}
           <div className="space-y-6">
-            {/* Contact Info */}
-            <Card className="card-gradient border-border/50 hover:glow-primary transition-smooth group animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <CardHeader>
-                <CardTitle className="text-lg group-hover:text-primary transition-smooth flex items-center gap-2">
-                  <Send size={20} />
-                  Contact Information
-                </CardTitle>
-                <CardDescription>Get in touch for opportunities</CardDescription>
-              </CardHeader>
-              
-              <CardContent className="space-y-4">
-                <div className="space-y-3">
-                  <a href="mailto:gagan.gangadhar07@gmail.com" className="flex items-center gap-3 p-3 rounded-lg hover:bg-secondary/50 transition-smooth group">
-                    <Mail size={18} className="text-accent group-hover:text-primary" />
-                    <div>
-                      <div className="text-sm font-medium">Email</div>
-                      <div className="text-xs text-muted-foreground">gagan.gangadhar07@gmail.com</div>
+            {/* Availability Status */}
+            <Card className="card-gradient border-border/50 hover:glow-primary transition-smooth group animate-fade-in">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
+                    <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                      <div className="w-4 h-4 bg-white rounded-full animate-pulse"></div>
                     </div>
-                  </a>
-                  
-                  <a href="tel:+918050804661" className="flex items-center gap-3 p-3 rounded-lg hover:bg-secondary/50 transition-smooth group">
-                    <Phone size={18} className="text-accent group-hover:text-primary" />
-                    <div>
-                      <div className="text-sm font-medium">Phone</div>
-                      <div className="text-xs text-muted-foreground">+91 8050804661</div>
-                    </div>
-                  </a>
-                  
-                  <div className="flex items-center gap-3 p-3 rounded-lg">
-                    <MapPin size={18} className="text-accent" />
-                    <div>
-                      <div className="text-sm font-medium">Location</div>
-                      <div className="text-xs text-muted-foreground">Bengaluru, Karnataka, India</div>
-                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-green-400">Available for Projects</h3>
+                    <p className="text-sm text-muted-foreground">Ready to discuss new opportunities</p>
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="text-center p-4 bg-primary/10 rounded-lg">
+                    <div className="text-2xl font-bold text-primary">24h</div>
+                    <div className="text-xs text-muted-foreground">Response Time</div>
+                  </div>
+                  <div className="text-center p-4 bg-accent/10 rounded-lg">
+                    <div className="text-2xl font-bold text-accent">100%</div>
+                    <div className="text-xs text-muted-foreground">Client Satisfaction</div>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Social Links & Status */}
-            <Card className="card-gradient border-border/50 hover:glow-accent transition-smooth group animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            {/* Contact Methods */}
+            <Card className="card-gradient border-border/50 hover:glow-accent transition-smooth group animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <CardHeader>
-                <CardTitle className="text-lg group-hover:text-accent transition-smooth">
-                  Professional Status
+                <CardTitle className="text-lg group-hover:text-accent transition-smooth flex items-center gap-2">
+                  <Send size={20} />
+                  Let's Connect
                 </CardTitle>
-                <CardDescription>Current availability</CardDescription>
+                <CardDescription>Choose your preferred way to reach out</CardDescription>
               </CardHeader>
               
               <CardContent className="space-y-4">
-                <div className="flex items-center gap-3 p-3 bg-accent/10 rounded-lg border border-accent/20">
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <div>
-                    <div className="text-sm font-medium text-accent">Available for Opportunities</div>
-                    <div className="text-xs text-muted-foreground">Open to new challenges</div>
-                  </div>
+                {/* Primary Contact Methods */}
+                <div className="grid grid-cols-1 gap-3">
+                  <a 
+                    href="mailto:gagan.gangadhar07@gmail.com?subject=Project Inquiry&body=Hi Gagan, I would like to discuss a project opportunity with you." 
+                    className="flex items-center gap-4 p-4 rounded-lg hover:bg-primary/10 transition-all duration-300 group border border-primary/20 hover:border-primary/40"
+                  >
+                    <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center group-hover:bg-primary/30 transition-colors">
+                      <Mail size={20} className="text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-medium text-foreground">Email Me</div>
+                      <div className="text-sm text-muted-foreground">gagan.gangadhar07@gmail.com</div>
+                    </div>
+                    <div className="text-primary opacity-0 group-hover:opacity-100 transition-opacity">→</div>
+                  </a>
+                  
+                  <a 
+                    href="https://wa.me/918050804661?text=Hi Gagan, I would like to discuss a project opportunity with you." 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 p-4 rounded-lg hover:bg-green-500/10 transition-all duration-300 group border border-green-500/20 hover:border-green-500/40"
+                  >
+                    <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
+                      <MessageCircle size={20} className="text-green-500" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-medium text-foreground">WhatsApp</div>
+                      <div className="text-sm text-muted-foreground">+91 8050804661 • Quick chat</div>
+                    </div>
+                    <div className="text-green-500 opacity-0 group-hover:opacity-100 transition-opacity">→</div>
+                  </a>
+                  
+                  <a 
+                    href="tel:+918050804661" 
+                    className="flex items-center gap-4 p-4 rounded-lg hover:bg-accent/10 transition-all duration-300 group border border-accent/20 hover:border-accent/40"
+                  >
+                    <div className="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                      <Phone size={20} className="text-accent" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-medium text-foreground">Call Me</div>
+                      <div className="text-sm text-muted-foreground">+91 8050804661</div>
+                    </div>
+                    <div className="text-accent opacity-0 group-hover:opacity-100 transition-opacity">→</div>
+                  </a>
                 </div>
-                
-                <div className="space-y-3">
-                  <h4 className="text-sm font-semibold text-muted-foreground">Connect With Me</h4>
+
+                {/* Social Links */}
+                <div className="pt-4 border-t border-border/50">
+                  <h4 className="text-sm font-semibold text-muted-foreground mb-3">Follow My Work</h4>
                   <div className="flex gap-3">
                     <Button 
                       size="sm" 
                       variant="outline" 
-                      className="border-primary/30 hover:bg-primary hover:text-white transition-smooth flex-1"
+                      className="flex-1 border-primary/30 hover:bg-primary hover:text-white transition-smooth"
                       onClick={() => window.open('https://www.linkedin.com/in/gagan-gangadhar/', '_blank')}
                     >
                       <Linkedin size={16} className="mr-2" />
@@ -254,7 +383,7 @@ CORE SKILLS
                     <Button 
                       size="sm" 
                       variant="outline" 
-                      className="border-secondary/30 hover:bg-secondary hover:text-white transition-smooth flex-1"
+                      className="flex-1 border-secondary/30 hover:bg-secondary hover:text-white transition-smooth"
                       onClick={() => window.open('https://github.com/gagan-gangadhar', '_blank')}
                     >
                       <Github size={16} className="mr-2" />
@@ -263,10 +392,13 @@ CORE SKILLS
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-border">
-                  <p className="text-xs text-muted-foreground text-center">
-                    Response time: Usually within 24 hours
-                  </p>
+                {/* Location */}
+                <div className="flex items-center gap-3 p-3 bg-muted/30 rounded-lg">
+                  <MapPin size={18} className="text-accent" />
+                  <div>
+                    <div className="text-sm font-medium">Based in</div>
+                    <div className="text-xs text-muted-foreground">Bengaluru, Karnataka, India</div>
+                  </div>
                 </div>
               </CardContent>
             </Card>

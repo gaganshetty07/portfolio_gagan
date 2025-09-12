@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Code, TestTube, Database, TrendingUp } from "lucide-react";
-import { ProjectDetail } from "./ProjectDetail";
 
 const projects = [
   {
@@ -90,27 +90,14 @@ const projects = [
 ];
 
 export const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  const navigate = useNavigate();
   const [showAllProjects, setShowAllProjects] = useState(false);
 
   const handleViewDetails = (projectIndex: number) => {
-    setSelectedProject(projectIndex);
-  };
-
-  const handleBackToProjects = () => {
-    setSelectedProject(null);
+    navigate(`/project/${projectIndex}`);
   };
 
   const displayProjects = showAllProjects ? projects : projects.slice(0, 3);
-
-  if (selectedProject !== null) {
-    return (
-      <ProjectDetail 
-        project={projects[selectedProject]} 
-        onBack={handleBackToProjects}
-      />
-    );
-  }
 
   return (
     <section id="projects" className="py-20 px-4">
