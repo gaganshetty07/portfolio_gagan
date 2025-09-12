@@ -17,6 +17,8 @@ import {
   MessageCircle
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 export const Contact = () => {
   const { toast } = useToast();
@@ -36,7 +38,7 @@ export const Contact = () => {
     e.preventDefault();
     
     // Create mailto link with form data
-    const mailtoLink = `mailto:gagan.gangadhar07@gmail.com?subject=${encodeURIComponent(formData.subject || 'Contact from Portfolio')}&body=${encodeURIComponent(
+    const mailtoLink = `mailto:gaganshetty1996@gmail.com?subject=${encodeURIComponent(formData.subject || 'Contact from Portfolio')}&body=${encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
     )}`;
     
@@ -57,7 +59,7 @@ export const Contact = () => {
     const body = "Hi Gagan,\n\nI would like to schedule a call to discuss potential opportunities.\n\nBest regards";
     
     // For now, open email with scheduling request
-    const mailtoLink = `mailto:gagan.gangadhar07@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailtoLink = `mailto:gaganshetty1996@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.open(mailtoLink, '_blank');
     
     toast({
@@ -231,36 +233,93 @@ export const Contact = () => {
                   <Button
                     className="flex-1 hero-gradient text-white hover:glow-primary transition-smooth group"
                     onClick={() => {
-                      const resumeContent = `GAGAN S - PROJECT QUALITY ENGINEER
-Email: gagan.gangadhar07@gmail.com | Phone: +91 8050804661
-Location: Bengaluru, Karnataka, 560079, India
-
-PROFESSIONAL SUMMARY
-A proactive Project Quality Engineer with 4+ years of hands-on experience in software testing, automation, and quality assurance.
-Skilled in prompt engineering and passionate about learning new technologies, delivering high-quality software solutions through comprehensive testing strategies.
-
-WORK EXPERIENCE
-Project Quality Engineer | Phenom | Jan 2025 - Present
-Quality Analyst | AVR Edge Networks Pvt Ltd (Acquired by Phenom) | July 2021 - Dec 2024
-Project Support Coordinator | Schneider Electric | Nov 2019 - Jun 2021
-Data Analyst | Wistron ITS | Mar 2019 - Aug 2019
-
-CORE SKILLS
-• Quality Practices: FMEA/FTA, SQI, Process improvement
-• Testing & Automation: Python, Selenium, Playwright, API Testing, Performance Testing, Database Testing
-• Prompt Engineering: ChatGPT, Claude, AI-assisted testing
-• Tools: JIRA, Pytest, Locust, Jenkins, Postman
-• Learning: Always exploring new technologies and frameworks`;
-
-                      const blob = new Blob([resumeContent], { type: 'text/plain' });
-                      const url = URL.createObjectURL(blob);
-                      const a = document.createElement('a');
-                      a.href = url;
-                      a.download = 'Gagan_S_Resume.txt';
-                      document.body.appendChild(a);
-                      a.click();
-                      document.body.removeChild(a);
-                      URL.revokeObjectURL(url);
+                      // Use iframe approach for complete isolation
+                      const iframe = document.createElement('iframe');
+                      iframe.style.position = 'fixed';
+                      iframe.style.left = '-10000px';
+                      iframe.style.top = '-10000px';
+                      iframe.style.width = '210mm';
+                      iframe.style.height = '297mm';
+                      iframe.style.border = 'none';
+                      iframe.style.visibility = 'hidden';
+                      iframe.style.pointerEvents = 'none';
+                      iframe.style.zIndex = '-9999';
+                      
+                      document.body.appendChild(iframe);
+                      
+                      iframe.onload = async () => {
+                        try {
+                          // Show loading state
+                          const button = event.target as HTMLButtonElement;
+                          const originalText = button.textContent;
+                          button.textContent = 'Generating PDF...';
+                          button.disabled = true;
+                          
+                          // Wait for iframe to fully load
+                          await new Promise(resolve => setTimeout(resolve, 1000));
+                          
+                          const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                          if (!iframeDoc) throw new Error('Cannot access iframe content');
+                          
+                          // Generate canvas from iframe content
+                          const canvas = await html2canvas(iframeDoc.body, {
+                            scale: 2,
+                            useCORS: true,
+                            allowTaint: true,
+                            backgroundColor: '#ffffff'
+                          });
+                          
+                          // Create PDF
+                          const imgData = canvas.toDataURL('image/png');
+                          const pdf = new jsPDF('p', 'mm', 'a4');
+                          const imgWidth = 210; // A4 width in mm
+                          const pageHeight = 295; // A4 height in mm
+                          const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                          let heightLeft = imgHeight;
+                          
+                          let position = 0;
+                          
+                          // Add first page
+                          pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                          heightLeft -= pageHeight;
+                          
+                          // Add additional pages if needed
+                          while (heightLeft >= 0) {
+                            position = heightLeft - imgHeight;
+                            pdf.addPage();
+                            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                            heightLeft -= pageHeight;
+                          }
+                          
+                          // Download the PDF
+                          pdf.save('Gagan_S_Resume.pdf');
+                          
+                          // Clean up
+                          document.body.removeChild(iframe);
+                          
+                          // Reset button state
+                          button.textContent = originalText;
+                          button.disabled = false;
+                          
+                        } catch (error) {
+                          console.error('PDF generation failed:', error);
+                          // Clean up
+                          document.body.removeChild(iframe);
+                          // Reset button state
+                          const button = event.target as HTMLButtonElement;
+                          button.textContent = 'Download Resume';
+                          button.disabled = false;
+                          // Fallback to print method
+                          const printWindow = window.open('/resume.html', '_blank');
+                          printWindow.onload = () => {
+                            setTimeout(() => {
+                              printWindow.print();
+                            }, 1000);
+                          };
+                        }
+                      };
+                      
+                      iframe.src = '/resume.html';
                     }}
                   >
                     <Download size={18} className="mr-2 group-hover:animate-bounce" />
@@ -323,7 +382,7 @@ CORE SKILLS
                 {/* Primary Contact Methods */}
                 <div className="grid grid-cols-1 gap-3">
                   <a 
-                    href="mailto:gagan.gangadhar07@gmail.com?subject=Project Inquiry&body=Hi Gagan, I would like to discuss a project opportunity with you." 
+                    href="mailto:gaganshetty1996@gmail.com?subject=Project Inquiry&body=Hi Gagan, I would like to discuss a project opportunity with you." 
                     className="flex items-center gap-4 p-4 rounded-lg hover:bg-primary/10 transition-all duration-300 group border border-primary/20 hover:border-primary/40"
                   >
                     <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center group-hover:bg-primary/30 transition-colors">
@@ -331,7 +390,7 @@ CORE SKILLS
                     </div>
                     <div className="flex-1">
                       <div className="font-medium text-foreground">Email Me</div>
-                      <div className="text-sm text-muted-foreground">gagan.gangadhar07@gmail.com</div>
+                      <div className="text-sm text-muted-foreground">gaganshetty1996@gmail.com</div>
                     </div>
                     <div className="text-primary opacity-0 group-hover:opacity-100 transition-opacity">→</div>
                   </a>
@@ -375,7 +434,7 @@ CORE SKILLS
                       size="sm" 
                       variant="outline" 
                       className="flex-1 border-primary/30 hover:bg-primary hover:text-white transition-smooth"
-                      onClick={() => window.open('https://www.linkedin.com/in/gagan-gangadhar/', '_blank')}
+                      onClick={() => window.open('http://linkedin.com/in/gagan-s-8b70a0212', '_blank')}
                     >
                       <Linkedin size={16} className="mr-2" />
                       LinkedIn
@@ -384,7 +443,7 @@ CORE SKILLS
                       size="sm" 
                       variant="outline" 
                       className="flex-1 border-secondary/30 hover:bg-secondary hover:text-white transition-smooth"
-                      onClick={() => window.open('https://github.com/gagan-gangadhar', '_blank')}
+                      onClick={() => window.open('https://github.com/gaganshetty07', '_blank')}
                     >
                       <Github size={16} className="mr-2" />
                       GitHub

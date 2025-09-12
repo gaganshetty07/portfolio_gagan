@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button"; 
 import { ArrowLeft, Download, Mail, Phone, MapPin } from "lucide-react";
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 interface ResumeViewerProps {
   onBack: () => void;
@@ -8,65 +10,79 @@ interface ResumeViewerProps {
 
 export const ResumeViewer = ({ onBack }: ResumeViewerProps) => {
   const handleDownload = () => {
-    const resumeContent = `
-GAGAN S - QUALITY ANALYST
-Email: gagan.gangadhar07@gmail.com | Phone: 8050804661
-Location: Bengaluru, Karnataka, 560079, India
-
-PROFESSIONAL SUMMARY
-A proactive and results-driven Quality Analyst with over 3 plus years of experience in ensuring high-quality 
-software delivery. Adept at identifying hidden issues and conducting comprehensive analyses in software 
-systems. Experienced in applying quality practices, agile methodologies, and leading critical topics such as 
-FMEA/FTA. Expertise in collaborating cross-functionally, delivering customer success, and using automation 
-tools like Python, Selenium, and JMeter.
-
-WORK EXPERIENCE
-
-Quality Analyst | AVR Edge Networks Pvt Ltd | July 2021 - Present
-• Quality Process Implementation & Monitoring: Ensured highest quality solutions by implementing 
-  and monitoring quality processes, including product defect tracking through SQI
-• FMEA/FTA Leadership: Led discussions and implementation of Failure Mode and Effects Analysis 
-  (FMEA) and Fault Tree Analysis (FTA) within the squad
-• Testing & Automation: Designed and executed optimized test cases for manual and automated testing, 
-  including API testing, performance testing with Locust and JMeter
-• Customer Advocacy & Collaboration: Worked closely with cross-functional teams to ensure product 
-  specifications are met while advocating for customer needs
-• Agile Practices: Actively participated in agile ceremonies ensuring alignment with agile practices
-
-Project Support Coordinator | Schneider Electric | Nov 2019 - Jun 2021  
-• Project Coordination: Managed projects for PAN India operations, ensuring project timelines and quality standards
-• Hardware Testing: Gained exposure to hardware testing in Smart UPS and Inverters projects
-• Customer Success Management: Effectively managed customer escalations and tracked deliverables
-
-Data Analyst | Wistron ITS | Mar 2019 - Aug 2019
-• Defect Reporting & Data Verification: Analysed data and reported defects to development teams
-• Collaboration: Regularly interacted with cross-functional teams for defect tracking and resolution
-
-CORE SKILLS
-• Quality Practices: Quality assurance methodologies, defect tracking, process improvement (SQI, FMEA, FTA)
-• Agile & Scrum: Agile methodologies, Scrum ceremonies, customer advocacy, sprint planning
-• Testing & Automation: API Automation (Postman, Pytest), UI Automation (Selenium, Python), 
-  Load Testing (Locust, JMeter), Manual Testing, Regression Testing
-• Programming & Tools: Python, SQL, PyCharm, Selenium WebDriver, Excel, Jenkins, Git
-• Soft Skills: Effective communication, cross-functional collaboration, customer success management
-
-EDUCATION
-Bachelor of Engineering - Electrical and Electronics Engineering
-Rajarajeswari College of Engineering | Apr 2014 - Apr 2018
-
-LANGUAGES
-English (fluent), Hindi (Beginner), Kannada (fluent)
-    `;
+    // Use iframe approach for complete isolation
+    const iframe = document.createElement('iframe');
+    iframe.style.position = 'fixed';
+    iframe.style.left = '-10000px';
+    iframe.style.top = '-10000px';
+    iframe.style.width = '210mm';
+    iframe.style.height = '297mm';
+    iframe.style.border = 'none';
+    iframe.style.visibility = 'hidden';
+    iframe.style.pointerEvents = 'none';
+    iframe.style.zIndex = '-9999';
     
-    const blob = new Blob([resumeContent], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'Gagan_S_Quality_Analyst_Resume.txt';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    document.body.appendChild(iframe);
+    
+    iframe.onload = async () => {
+      try {
+        // Wait for iframe to fully load
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+        if (!iframeDoc) throw new Error('Cannot access iframe content');
+        
+        // Generate canvas from iframe content
+        const canvas = await html2canvas(iframeDoc.body, {
+          scale: 2,
+          useCORS: true,
+          allowTaint: true,
+          backgroundColor: '#ffffff'
+        });
+        
+        // Create PDF
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const imgWidth = 210; // A4 width in mm
+        const pageHeight = 295; // A4 height in mm
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        let heightLeft = imgHeight;
+        
+        let position = 0;
+        
+        // Add first page
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+        
+        // Add additional pages if needed
+        while (heightLeft >= 0) {
+          position = heightLeft - imgHeight;
+          pdf.addPage();
+          pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
+        }
+        
+        // Download the PDF
+        pdf.save('Gagan_S_Resume.pdf');
+        
+        // Clean up
+        document.body.removeChild(iframe);
+        
+      } catch (error) {
+        console.error('PDF generation failed:', error);
+        // Clean up
+        document.body.removeChild(iframe);
+        // Fallback to print method
+        const printWindow = window.open('/resume.html', '_blank');
+        printWindow.onload = () => {
+          setTimeout(() => {
+            printWindow.print();
+          }, 1000);
+        };
+      }
+    };
+    
+    iframe.src = '/resume.html';
   };
 
   return (
