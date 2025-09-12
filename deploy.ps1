@@ -1,13 +1,20 @@
-# Deploy script for GitHub Pages
-Write-Host "Building for production..." -ForegroundColor Green
+# Portfolio Deployment Script
+Write-Host "🚀 Starting deployment process..." -ForegroundColor Green
+
+# Build for production
+Write-Host "📦 Building for production..." -ForegroundColor Yellow
 npm run build
 
-Write-Host "Copying files to root..." -ForegroundColor Green
+# Copy production files to root
+Write-Host "📁 Copying production files..." -ForegroundColor Yellow
 xcopy dist\* . /E /H /Y
 
-Write-Host "Committing changes..." -ForegroundColor Green
+# Commit and push
+Write-Host "💾 Committing changes..." -ForegroundColor Yellow
 git add .
-git commit -m "Deploy portfolio updates"
+git commit -m "Deploy portfolio updates - $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
 git push origin main
 
-Write-Host "Deployment complete! Check https://gaganshetty07.github.io/agile-qa-insights/ in 2-3 minutes" -ForegroundColor Yellow
+Write-Host "✅ Deployment complete!" -ForegroundColor Green
+Write-Host "🌐 Your portfolio will be live at: https://gaganshetty07.github.io/agile-qa-insights/" -ForegroundColor Cyan
+Write-Host "⏱️  Wait 2-3 minutes for GitHub Pages to update" -ForegroundColor Yellow
