@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - Gagan S Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 2rem;
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .error-message {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        
+        .error-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 0 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .home-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+        
+        .contact-btn {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+        }
+        
+        .portfolio-info {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .portfolio-info h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .portfolio-info p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            .error-message {
+                font-size: 1.2rem;
+            }
+            
+            .btn {
+                display: block;
+                margin: 10px auto;
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-code">404</div>
+        <div class="error-message">Oops! Page not found</div>
+        <div class="error-description">
+            The page you're looking for doesn't exist or has been moved. 
+            Don't worry, let's get you back on track!
+        </div>
+        
+        <a href="/agile-qa-insights/" class="btn home-btn">🏠 Return to Home</a>
+        <a href="/agile-qa-insights/#contact" class="btn contact-btn">📧 Contact Me</a>
+        
+        <div class="portfolio-info">
+            <h3>👨‍💻 Gagan S - Quality Analyst</h3>
+            <p>
+                Experienced Quality Analyst with 4+ years in software testing, automation, 
+                and quality assurance. Expert in Python, Selenium, and API testing.
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-redirect to home page after 10 seconds
+        setTimeout(function() {
+            window.location.href = '/agile-qa-insights/';
+        }, 10000);
+        
+        // Add a countdown timer
+        let countdown = 10;
+        const timerElement = document.createElement('div');
+        timerElement.style.marginTop = '1rem';
+        timerElement.style.opacity = '0.7';
+        timerElement.innerHTML = `Redirecting to home page in <span id="countdown">${countdown}</span> seconds...`;
+        document.querySelector('.container').appendChild(timerElement);
+        
+        const countdownInterval = setInterval(function() {
+            countdown--;
+            document.getElementById('countdown').textContent = countdown;
+            if (countdown <= 0) {
+                clearInterval(countdownInterval);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
