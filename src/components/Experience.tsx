@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Building2, Calendar, MapPin } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Building2, Calendar, MapPin, ExternalLink } from "lucide-react";
+import { ExperienceDetail } from "./ExperienceDetail";
 
 const experiences = [
   {
@@ -17,7 +20,14 @@ const experiences = [
       "Agile Practices: Actively participated in agile ceremonies such as sprint planning, retrospectives, and daily standups, ensuring alignment with agile practices and continuous quality improvement.",
       "Bug Tracking & Reporting: Logged and tracked defects using JIRA, ensuring timely resolution and communication across teams."
     ],
-    skills: ["Python", "Selenium", "JMeter", "FMEA", "FTA", "JIRA", "API Testing"]
+    skills: ["Python", "Selenium", "JMeter", "FMEA", "FTA", "JIRA", "API Testing"],
+    achievements: [
+      "Reduced product defects by 40% through implementation of SQI processes",
+      "Led FMEA sessions that identified 25+ critical risk scenarios",
+      "Automated 80% of regression test cases using Selenium framework"
+    ],
+    teamSize: "8-10 cross-functional team members",
+    technologies: ["Python", "Selenium WebDriver", "Pytest", "Locust", "JMeter", "JIRA", "Jenkins", "Git"]
   },
   {
     title: "Project Support Coordinator",
@@ -30,7 +40,14 @@ const experiences = [
       "Hardware Testing: Gained exposure to hardware testing in projects like Smart UPS and Inverters, contributing to multi-domain expertise in quality assurance.",
       "Customer Success Management: Effectively managed customer escalations and tracked deliverables to enhance customer satisfaction and project success."
     ],
-    skills: ["Project Management", "Hardware Testing", "Customer Success", "Quality Assurance"]
+    skills: ["Project Management", "Hardware Testing", "Customer Success", "Quality Assurance"],
+    achievements: [
+      "Successfully managed 15+ PAN India projects with 100% on-time delivery",
+      "Reduced customer escalations by 35% through proactive communication",
+      "Implemented quality checkpoints that improved project success rate by 20%"
+    ],
+    teamSize: "5-12 project team members",
+    technologies: ["MS Project", "Excel", "PowerBI", "SharePoint", "Quality Management Systems"]
   },
   {
     title: "Data Analyst", 
@@ -42,11 +59,25 @@ const experiences = [
       "Defect Reporting & Data Verification: Analysed data and reported defects to development teams, ensuring proper functionality of software through data verification and validation.",
       "Collaboration with Development Teams: Regularly interacted with cross-functional teams to ensure defect tracking, resolution, and thorough testing, resulting in improved software quality."
     ],
-    skills: ["Data Analysis", "Defect Tracking", "Software Testing", "Cross-functional Collaboration"]
+    skills: ["Data Analysis", "Defect Tracking", "Software Testing", "Cross-functional Collaboration"],
+    achievements: [
+      "Identified and reported 200+ defects leading to 95% improvement in data accuracy",
+      "Developed automated data verification scripts reducing manual effort by 60%"
+    ],
+    teamSize: "3-5 development team members",
+    technologies: ["Python", "SQL", "Excel", "Data Validation Tools", "Bug Tracking Systems"]
   }
 ];
 
 export const Experience = () => {
+  const [selectedExperience, setSelectedExperience] = useState(null);
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
+
+  const handleViewDetails = (experience) => {
+    setSelectedExperience(experience);
+    setIsDetailOpen(true);
+  };
+
   return (
     <section id="experience" className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
@@ -106,13 +137,22 @@ export const Experience = () => {
                         ))}
                       </div>
                       
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2 mb-4">
                         {exp.skills.map((skill, skillIndex) => (
                           <Badge key={skillIndex} variant="secondary" className="bg-primary/20 text-primary border-primary/30 hover:bg-primary/30 transition-smooth">
                             {skill}
                           </Badge>
                         ))}
                       </div>
+                      
+                      <Button 
+                        onClick={() => handleViewDetails(exp)}
+                        variant="outline" 
+                        className="w-full group border-primary/30 text-primary hover:bg-primary/20 hover:border-primary/50 transition-all"
+                      >
+                        <ExternalLink size={16} className="mr-2 group-hover:scale-110 transition-transform" />
+                        View Details
+                      </Button>
                     </CardContent>
                   </Card>
                 </div>
@@ -120,6 +160,12 @@ export const Experience = () => {
             ))}
           </div>
         </div>
+        
+        <ExperienceDetail 
+          experience={selectedExperience}
+          isOpen={isDetailOpen}
+          onClose={() => setIsDetailOpen(false)}
+        />
       </div>
     </section>
   );

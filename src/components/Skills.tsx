@@ -138,19 +138,19 @@ export const Skills = () => {
           {skillCategories.map((category, index) => {
             const IconComponent = category.icon;
             return (
-              <Card key={index} className="card-gradient border-border/50 hover:glow-accent transition-smooth group animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+              <Card key={index} className="creative-card skill-card border-border/50 group animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                 <CardHeader>
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 bg-primary/20 rounded-lg group-hover:bg-primary/30 transition-smooth">
-                      <IconComponent size={24} className="text-primary" />
+                    <div className="p-3 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl group-hover:from-primary/40 group-hover:to-accent/40 transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-3">
+                      <IconComponent size={24} className="text-primary group-hover:text-accent transition-colors duration-300" />
                     </div>
                     <div>
-                      <CardTitle className="text-xl group-hover:text-accent transition-smooth">
+                      <CardTitle className="text-xl group-hover:text-accent transition-all duration-300 group-hover:transform group-hover:translate-x-2">
                         {category.title}
                       </CardTitle>
                     </div>
                   </div>
-                  <CardDescription className="text-sm leading-relaxed">
+                  <CardDescription className="text-sm leading-relaxed group-hover:text-accent/80 transition-colors duration-300">
                     {category.description}
                   </CardDescription>
                 </CardHeader>
@@ -159,25 +159,36 @@ export const Skills = () => {
                   {/* Skill Bars */}
                   <div className="space-y-4">
                     {category.skills.map((skill, skillIndex) => (
-                      <div key={skillIndex} className="space-y-2">
+                      <div key={skillIndex} className="space-y-2 group/skill">
                         <div className="flex justify-between text-sm">
-                          <span className="font-medium">{skill.name}</span>
-                          <span className="text-muted-foreground">{skill.level}%</span>
+                          <span className="font-medium group-hover/skill:text-primary transition-colors duration-300">{skill.name}</span>
+                          <span className="text-muted-foreground group-hover/skill:text-accent transition-colors duration-300">{skill.level}%</span>
                         </div>
-                        <Progress 
-                          value={animatedSkills[`${index}-${skillIndex}`] || 0} 
-                          className="h-2 bg-secondary transition-all duration-1000 ease-out"
-                        />
+                        <div className="relative">
+                          <Progress 
+                            value={animatedSkills[`${index}-${skillIndex}`] || 0} 
+                            className="h-3 bg-secondary/50 skill-bar transition-all duration-1000 ease-out group-hover/skill:h-4"
+                          />
+                          <div 
+                            className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary via-accent to-primary rounded-full transition-all duration-1000 ease-out opacity-0 group-hover/skill:opacity-30"
+                            style={{ width: `${animatedSkills[`${index}-${skillIndex}`] || 0}%` }}
+                          />
+                        </div>
                       </div>
                     ))}
                   </div>
                   
                   {/* Tools & Technologies */}
                   <div className="space-y-3">
-                    <h4 className="text-sm font-semibold text-muted-foreground">Tools & Technologies</h4>
+                    <h4 className="text-sm font-semibold text-muted-foreground group-hover:text-accent transition-colors duration-300">Tools & Technologies</h4>
                     <div className="flex flex-wrap gap-2">
                       {category.tools.map((tool, toolIndex) => (
-                        <Badge key={toolIndex} variant="outline" className="text-xs border-primary/30 text-primary hover:bg-primary/20 transition-smooth">
+                        <Badge 
+                          key={toolIndex} 
+                          variant="outline" 
+                          className="text-xs border-primary/30 text-primary hover:bg-primary/20 floating-badge transition-all duration-300 hover:border-accent/50 hover:text-accent hover:shadow-md"
+                          style={{ animationDelay: `${toolIndex * 0.1}s` }}
+                        >
                           {tool}
                         </Badge>
                       ))}

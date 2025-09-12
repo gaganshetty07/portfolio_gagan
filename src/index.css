@@ -159,6 +159,59 @@
   .animate-fade-in {
     animation: fadeIn 0.8s ease-out;
   }
+  
+  /* Creative Hover Effects */
+  .skill-card {
+    @apply relative overflow-hidden;
+  }
+  
+  .skill-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10 opacity-0 transition-opacity duration-300;
+  }
+  
+  .skill-card:hover::before {
+    @apply opacity-100;
+  }
+  
+  .skill-card:hover {
+    @apply transform scale-105 rotate-1;
+  }
+  
+  .skill-bar {
+    @apply relative overflow-hidden rounded-full;
+  }
+  
+  .skill-bar::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full transition-transform duration-700;
+  }
+  
+  .skill-bar:hover::after {
+    @apply transform -skew-x-12 translate-x-full;
+  }
+  
+  .creative-card {
+    @apply relative transform transition-all duration-300 hover:scale-105;
+    background: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%);
+    border: 1px solid transparent;
+    background-clip: padding-box;
+  }
+  
+  .creative-card::before {
+    content: '';
+    @apply absolute inset-0 rounded-lg p-[1px] bg-gradient-to-r from-primary via-accent to-primary opacity-0 transition-opacity duration-300;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+  }
+  
+  .creative-card:hover::before {
+    @apply opacity-100;
+  }
+  
+  .floating-badge {
+    @apply transform transition-all duration-200 hover:scale-110 hover:rotate-3 hover:shadow-lg;
+  }
 }
 
 @keyframes float {
