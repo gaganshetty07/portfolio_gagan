@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gagan S - Resume</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            line-height: 1.6; 
+            color: #333;
+            background: white;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        .header { 
+            text-align: center; 
+            margin-bottom: 30px; 
+            padding: 20px;
+            background: #667eea;
+            color: white;
+            border: 2px solid #667eea;
+        }
+        .name { 
+            font-size: 32px; 
+            font-weight: bold; 
+            margin-bottom: 10px;
+        }
+        .title { 
+            font-size: 18px; 
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        .contact { 
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+            flex-wrap: wrap;
+            font-size: 14px;
+        }
+        .contact-item { display: flex; align-items: center; gap: 5px; }
+        .section { 
+            margin: 20px 0; 
+            padding: 15px;
+            background: #ffffff;
+            border: 1px solid #e9ecef;
+            border-left: 4px solid #667eea;
+        }
+        .section h2 { 
+            color: #667eea; 
+            border-bottom: 2px solid #e9ecef; 
+            padding-bottom: 8px; 
+            margin-bottom: 15px;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .job { 
+            margin: 15px 0; 
+            padding: 12px;
+            background: #ffffff;
+            border: 1px solid #e9ecef;
+        }
+        .job-title { 
+            font-weight: bold; 
+            color: #667eea; 
+            font-size: 16px;
+        }
+        .company { 
+            color: #28a745; 
+            font-weight: 500;
+            margin: 5px 0;
+        }
+        .duration { 
+            color: #6c757d; 
+            font-style: italic; 
+            font-size: 14px;
+        }
+        .job ul { margin: 10px 0; padding-left: 20px; }
+        .job li { margin: 8px 0; }
+        .skills { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 10px; 
+            margin-top: 10px;
+        }
+        .skill { 
+            background: #667eea; 
+            color: white;
+            padding: 6px 12px; 
+            border-radius: 20px; 
+            font-size: 13px; 
+            font-weight: 500;
+        }
+        .education { 
+            margin: 15px 0; 
+            padding: 12px;
+            background: #ffffff;
+            border: 1px solid #e9ecef;
+        }
+        .degree { font-weight: bold; color: #667eea; }
+        .university { color: #28a745; margin: 5px 0; }
+        .summary { 
+            font-size: 16px; 
+            line-height: 1.7;
+            text-align: justify;
+        }
+        .competencies ul { margin: 10px 0; padding-left: 20px; }
+        .competencies li { margin: 8px 0; }
+        .experience-item { margin: 20px 0; }
+        .experience-title { font-weight: bold; color: #667eea; font-size: 16px; }
+        .experience-company { color: #28a745; font-weight: 500; margin: 5px 0; }
+        .experience-duration { color: #6c757d; font-style: italic; font-size: 14px; }
+        .experience-description ul { margin: 10px 0; padding-left: 20px; }
+        .experience-description li { margin: 5px 0; }
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            body { 
+                margin: 0; 
+                padding: 0.5in; 
+                font-size: 11pt;
+                line-height: 1.3;
+                color: #000 !important;
+                background: #fff !important;
+            }
+            .container { 
+                max-width: none; 
+                margin: 0;
+            }
+            .header { 
+                margin-bottom: 20pt; 
+                padding: 15pt;
+                page-break-inside: avoid;
+                background: #667eea !important;
+                color: #fff !important;
+                border: none;
+            }
+            .section { 
+                margin: 15pt 0; 
+                padding: 10pt;
+                page-break-inside: avoid;
+                border: 1px solid #ddd;
+                background: #fff !important;
+            }
+            .job { 
+                margin: 10pt 0; 
+                padding: 8pt;
+                page-break-inside: avoid;
+                background: #fff !important;
+                border: 1px solid #eee;
+            }
+            .experience-item { 
+                page-break-inside: avoid;
+                margin: 10pt 0;
+            }
+            .skills { 
+                display: block; 
+                margin: 5pt 0;
+            }
+            .skill { 
+                display: inline-block;
+                margin: 2pt 4pt 2pt 0;
+                padding: 3pt 8pt;
+                font-size: 9pt;
+                background: #667eea !important;
+                color: #fff !important;
+            }
+            .name { 
+                font-size: 20pt; 
+                color: #fff !important;
+            }
+            .title { 
+                font-size: 14pt; 
+                color: #fff !important;
+            }
+            .section h2 { 
+                font-size: 14pt; 
+                color: #667eea !important;
+            }
+            .job-title { color: #667eea !important; }
+            .company { color: #28a745 !important; }
+            .degree { color: #667eea !important; }
+            .university { color: #28a745 !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="name">GAGAN S</div>
+            <div class="title">PRODUCT QUALITY ENGINEER I</div>
+            <div class="contact">
+                <div class="contact-item">📧 gaganshetty1996@gmail.com</div>
+                <div class="contact-item">📱 +91 8050804661</div>
+                <div class="contact-item">📍 Bengaluru, India</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Professional Summary</h2>
+            <p class="summary">
+                Experienced Quality Engineer with 6 years of expertise in API automation testing, performance testing, and Agile
+                methodologies. Proficient in creating detailed test plans, automating testing processes, and ensuring data integrity
+                through meticulous defect tracking and resolution. Skilled in collaborating with stakeholders to translate
+                requirements into actionable testing strategies and delivering high-quality solutions. Adept at streamlining
+                operations, enhancing product quality, and providing actionable insights to support organizational objectives.
+                Demonstrates a strong problem-solving mindset and the ability to optimize testing performance in both team-
+                oriented and individual settings.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Core Competencies</h2>
+            <div class="competencies">
+                <ul>
+                    <li><strong>Technical Expertise:</strong> Proficient in Quality Engineering, with hands-on experience in API automation testing, performance testing, and Agile methodologies.</li>
+                    <li><strong>Data Integration and Management:</strong> Skilled in creating test plans, developing automated test cases, and ensuring product quality and accuracy through effective defect tracking and resolution.</li>
+                    <li><strong>Testing Automation:</strong> Experienced in automating testing processes using Selenium, Postman, and Python to enhance efficiency and deliver reliable results.</li>
+                    <li><strong>Process Improvement:</strong> Adept at identifying and implementing process improvements to streamline operations, enhance product quality, and support organizational goals.</li>
+                    <li><strong>Administrative Proficiency:</strong> Strong background in managing project documentation, scheduling, and coordination, contributing to seamless project execution.</li>
+                    <li><strong>Stakeholder Collaboration:</strong> Effective at working with cross-functional teams to understand requirements, resolve issues, and ensure high-quality deliverables.</li>
+                    <li><strong>Problem-Solving Skills:</strong> Demonstrates the ability to troubleshoot technical challenges, optimize testing performance, and address issues efficiently in both individual and team settings.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Technical Skills</h2>
+            <div class="skills">
+                <span class="skill">API Automation Testing</span>
+                <span class="skill">Manual Testing</span>
+                <span class="skill">Non Functional Testing</span>
+                <span class="skill">Functional Testing</span>
+                <span class="skill">Agile Scrum Framework</span>
+                <span class="skill">Test Case Development</span>
+                <span class="skill">Regression Testing</span>
+                <span class="skill">SQL Basics</span>
+                <span class="skill">Python</span>
+                <span class="skill">JIRA</span>
+                <span class="skill">Postman</span>
+                <span class="skill">Pycharm</span>
+                <span class="skill">Selenium</span>
+                <span class="skill">Pytest</span>
+                <span class="skill">Jenkins</span>
+                <span class="skill">CI/CD</span>
+                <span class="skill">Load Testing (Locust, JMeter)</span>
+                <span class="skill">Defect Tracking</span>
+                <span class="skill">Test Planning</span>
+                <span class="skill">Swagger</span>
+                <span class="skill">Advance Excel</span>
+                <span class="skill">Project Management</span>
+                <span class="skill">Test Rail</span>
+                <span class="skill">DBeaver</span>
+                <span class="skill">GIT</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Professional Experience</h2>
+            
+            <div class="experience-item">
+                <div class="experience-title">PRODUCT QUALITY ENGINEER 1</div>
+                <div class="experience-company">Phenom People – Bengaluru, India</div>
+                <div class="experience-duration">01/2025 - Present</div>
+                <div class="experience-description">
+                    <ul>
+                        <li>Led functional, regression, and performance testing to enhance product quality.</li>
+                        <li>Designed and executed automated test cases to streamline testing processes.</li>
+                        <li>Collaborated with cross-functional teams to resolve defects and ensure product excellence.</li>
+                        <li>Developed detailed test plans, test cases, and comprehensive test reports.</li>
+                        <li>Leveraged tools like Selenium, JIRA, and Postman for testing and defect tracking.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-title">Quality Analyst</div>
+                <div class="experience-company">Edge.ai – Bengaluru, India</div>
+                <div class="experience-duration">07/2021 – 12/2024</div>
+                <div class="experience-description">
+                    <ul>
+                        <li>Automated repetitive tasks with API test cases, reducing manual effort.</li>
+                        <li>Conducted performance testing using Locust and JMeter frameworks.</li>
+                        <li>Acted as Release Manager and supported production environments.</li>
+                        <li>Logged bugs and issues in JIRA, ensuring timely resolution.</li>
+                        <li>Implemented Agile methodologies and participated in Scrum ceremonies.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-title">Project Support Coordinator</div>
+                <div class="experience-company">Schneider Electric (Contract) – Bengaluru, India</div>
+                <div class="experience-duration">11/2019 – 06/2021</div>
+                <div class="experience-description">
+                    <ul>
+                        <li>Supervised PAN India projects, ensuring timely delivery and stakeholder satisfaction.</li>
+                        <li>Planned and allocated tasks while monitoring project milestones.</li>
+                        <li>Coordinated with stakeholders and presented project status reports to management.</li>
+                        <li>Analyzed data, identified defects, and collaborated with teams to resolve issues.</li>
+                        <li>Created and logged task tickets in JIRA for effective tracking.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-title">Data Analyst</div>
+                <div class="experience-company">Wistron ITS (Contract) – Bengaluru, India</div>
+                <div class="experience-duration">03/2019 – 08/2019</div>
+                <div class="experience-description">
+                    <ul>
+                        <li>Tested applications for data accuracy and shared reports with the development team.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Education</h2>
+            <div class="education">
+                <div class="degree">Bachelor of Engineering: Electrical and Electronics Engineering</div>
+                <div class="university">Rajarajeshwari College Of Engineering - Bengaluru, India</div>
+                <div class="duration">Apr 2014 - Apr 2018</div>
+            </div>
+            <div class="education">
+                <div class="degree">Pre-University: PCMB</div>
+                <div class="university">Karnataka Pre-University Board - Bengaluru, India</div>
+                <div class="duration">Jun 2012 - Dec 2014</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Languages</h2>
+            <p>English (Fluent), Kannada (Fluent), Hindi (Beginner)</p>
+        </div>
+    </div>
+</body>
+</html>
