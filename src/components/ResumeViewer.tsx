@@ -73,7 +73,8 @@ export const ResumeViewer = ({ onBack }: ResumeViewerProps) => {
         // Clean up
         document.body.removeChild(iframe);
         // Fallback to print method
-        const printWindow = window.open('/resume.html', '_blank');
+        const basePath = import.meta.env.PROD ? '/portfolio_gagan' : '';
+        const printWindow = window.open(`${basePath}/resume.html`, '_blank');
         printWindow.onload = () => {
           setTimeout(() => {
             printWindow.print();
@@ -82,7 +83,8 @@ export const ResumeViewer = ({ onBack }: ResumeViewerProps) => {
       }
     };
     
-    iframe.src = '/resume.html';
+    const basePath = import.meta.env.PROD ? '/portfolio_gagan' : '';
+    iframe.src = `${basePath}/resume.html`;
   };
 
   return (

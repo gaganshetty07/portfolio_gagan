@@ -310,7 +310,8 @@ export const Contact = () => {
                           button.textContent = 'Download Resume';
                           button.disabled = false;
                           // Fallback to print method
-                          const printWindow = window.open('/resume.html', '_blank');
+                          const basePath = import.meta.env.PROD ? '/portfolio_gagan' : '';
+                          const printWindow = window.open(`${basePath}/resume.html`, '_blank');
                           printWindow.onload = () => {
                             setTimeout(() => {
                               printWindow.print();
@@ -319,7 +320,8 @@ export const Contact = () => {
                         }
                       };
                       
-                      iframe.src = '/resume.html';
+                      const basePath = import.meta.env.PROD ? '/portfolio_gagan' : '';
+                      iframe.src = `${basePath}/resume.html`;
                     }}
                   >
                     <Download size={18} className="mr-2 group-hover:animate-bounce" />
