@@ -7,7 +7,7 @@ import { ExperienceDetail } from "./ExperienceDetail";
 
 const experiences = [
   {
-    title: "Project Quality Engineer",
+    title: "Product Quality Engineer",
     company: "Phenom",
     location: "Bengaluru",
     period: "Jan 2025 - Present",

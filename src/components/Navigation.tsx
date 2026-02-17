@@ -46,7 +46,7 @@ const Navigation = () => {
             </div>
             <div className="hidden sm:block">
               <h1 className="text-lg font-bold">Gagan S</h1>
-              <p className="text-xs text-muted-foreground">Project Quality Engineer • 4+ Years</p>
+              <p className="text-xs text-muted-foreground">Product Quality Engineer • 4+ Years</p>
             </div>
           </div>
 

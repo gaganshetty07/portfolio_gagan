@@ -100,7 +100,7 @@ export const Contact = () => {
                     <h3 className="text-2xl font-bold text-foreground group-hover:text-accent transition-smooth">
                       Gagan S
                     </h3>
-                    <p className="text-accent font-semibold">Project Quality Engineer</p>
+                    <p className="text-accent font-semibold">Product Quality Engineer</p>
                     <div className="flex items-center gap-2 mt-1">
                       <div className="w-2 h-2 bg-primary rounded-full"></div>
                       <span className="text-sm text-muted-foreground">4+ Years Experience</span>
@@ -133,7 +133,7 @@ export const Contact = () => {
                     <h4 className="text-lg font-semibold">About Me</h4>
                   </div>
                   <p className="text-card-foreground leading-relaxed text-sm">
-                    Passionate Project Quality Engineer with 4+ years of hands-on experience in automation testing, 
+                    Passionate Product Quality Engineer with 4+ years of hands-on experience in automation testing, 
                     API testing, and performance optimization. Expert in prompt engineering and AI-assisted development, 
                     delivering robust testing frameworks and ensuring software quality through innovative approaches.
                   </p>

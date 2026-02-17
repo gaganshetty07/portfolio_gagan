@@ -20,14 +20,14 @@ export const Hero = () => {
               <h1 className="text-5xl lg:text-7xl font-bold">
                 <span className="block">GAGAN S</span>
                 <span className="block bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                  Quality Engineer
+                  Software Test Engineer
                 </span>
               </h1>
             </div>
             
             <div className="space-y-4">
               <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
-              Experienced Project Quality Engineer with 4+ years in ensuring software reliability and performance.
+              Experienced Product Quality Engineer with 4+ years in ensuring software reliability and performance.
               Strong background in designing test strategies, analyzing complex systems, and driving data-driven quality improvements. 
               Passionate about leveraging automation and modern engineering practices to deliver scalable, high-quality solutions.
               </p>
