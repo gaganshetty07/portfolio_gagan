@@ -4,7 +4,7 @@ A modern, responsive portfolio website showcasing Quality Engineering expertise 
 
 ## 🚀 Live Demo
 
-**URL**: https://gaganshetty07.github.io/portfolio_gagan/
+**URL**: https://gaganshetty07.github.io/portfolio_gagan/ or bit.ly/4glnewt
 
 ## 🛠️ Technologies Used
 
